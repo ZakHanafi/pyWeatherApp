@@ -11,10 +11,10 @@ def index(request):
     current_weather_url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
   #  forecast_url = "https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&exclude=current,minutely, hourly,alerts&appid={}"
 
-    if requests.method == "POST":
-        city1 = request.POST['city1']
-        city2 = request.get('city2', None)
-        weather_data1,  = fetch_weather_and_forecast(city1, API_KEY, current_weather_url)
+    if request.method == "POST":
+        city1 = request.POST.get('city1')
+        city2 = request.POST.get('city2', None)
+        weather_data1  = fetch_weather_and_forecast(city1, API_KEY, current_weather_url)
 
 
         if city2:
@@ -30,9 +30,9 @@ def index(request):
 
         }
 
-        return render(request, "weather_app/index.hmtl", context)
+        return render(request, "weather_app/index.html", context)
     else:
-        return render(request, "weather_app/index.hmtl")
+        return render(request, "weather_app/index.html")
     
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url):
@@ -44,7 +44,7 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url):
 
 
         "city": city,
-        "temperature": round(response['main']['temp'] - 273.15, 2), 
+        "temperature": f"{round(response['main']['temp'] - 273.15, 2)}\u00b0C", 
         "description": response['weather'][0]['description'], 
         "icon" : response['weather'][0]['icon']
 

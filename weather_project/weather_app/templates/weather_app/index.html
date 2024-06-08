@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<hmtl lang="en">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title> Weather App </title>
@@ -18,13 +18,13 @@
         <div class="comparison-container">
             {% if weather_data1 %}
                 <div class="city-container">
-                    {% include 'weather_app/city_weather.html' with weather_data= weather_data1%}
+                    {% include 'weather_app/city_weather.html' with weather_data=weather_data1%}
 
                 </div>
             {% endif %}
             {% if weather_data2 %}
                 <div class="city-container">
-                    {% include 'weather_app/city_weather.html' with weather_data= weather_data2%}
+                    {% include 'weather_app/city_weather.html' with weather_data=weather_data2%}
 
 
 
@@ -35,4 +35,4 @@
 
 
     </body>
-</hmtl>
+</html>
